@@ -1,0 +1,117 @@
+<div class="container p-fluid sidebar-closed">
+  <div class="grid">
+    <form action="" autocomplete="off"><!-- (ngSubmit)="pesquisar()" -->
+      <div class="col-12">
+        <h1>{{ LANCAMENTO }}</h1>
+      </div>
+      <div class="col-12">
+        <label>{{ DESCRICAO }}</label>
+        <input 
+          type="text" 
+          pInputText 
+          class="col-12" 
+          name="descricao" 
+          [(ngModel)]="filtro.descricao"
+          style="text-transform: uppercase;"
+          />
+      </div>
+      <div class="col-3 inputData">
+        <label class="label">{{ VENCIMENTO }}</label>
+        <!-- <input type="text" pInputText class="inputData"/> -->
+        <p-calendar 
+          dateFormat="dd/mm/yy"
+          [inputStyle]="{width: '95px'}"
+          name="dataVencimentoInicio" 
+          [(ngModel)]="filtro.dataVencimentoInicio" 
+          [monthNavigator]="true" 
+          [yearNavigator]="true" 
+          yearRange="2000:2030"></p-calendar>
+        <label> {{ ATE }} </label>
+        <!-- <input type="text" pInputText class="inputData"/> -->
+        <p-calendar 
+          dateFormat="dd/mm/yy" 
+          [inputStyle]="{width: '95px'}"
+          name="dataVencimentoFim" 
+          [(ngModel)]="filtro.dataVencimentoFim" 
+          [monthNavigator]="true" 
+          [yearNavigator]="true" 
+          yearRange="2000:2030"></p-calendar>
+      </div>
+      <div class="col-9 btnSearch">
+        <button pButton 
+          type="submit" 
+          icon="fas fa-search" 
+          pTooltip="Pesquisar" 
+          class="botao"
+          (click)="pesquisar()" 
+          tooltipPosition="bottom"></button><!-- fa-solid fa-magnifying-glass -->
+
+          <button pButton 
+          type="submit" 
+          icon="fas fa-file-csv" 
+          pTooltip="CSV/Excel"
+          class="botao" 
+          (click)="exportCSV()" 
+          tooltipPosition="bottom"
+          [disabled]="habilitaDownloadCsv" 
+          type="submit" 
+          id="download-csv-button"></button><!-- fa-solid fa-magnifying-glass -->
+          <button pButton 
+          type="submit" 
+          icon="fas fa fa-file" 
+          pTooltip="PDF"
+          class="botao" 
+          tooltipPosition="bottom"
+          type="submit" 
+          id="download-csv-button"></button>
+        <button pButton 
+          icon="fas fa-eraser"  
+          pTooltip="Limpar" 
+          class="botao" 
+          (click)="limpar()"
+          [disabled]="habilitaLimpar" 
+          tooltipPosition="bottom"></button><!-- fa-solid fa-magnifying-glass -->
+      </div>
+    </form>
+  </div>
+
+    <div class="grid">
+      <div class="col-12" #resultado>
+        <app-lancamentos-grid 
+          [lancamentoFiltro]="lancamentoList" 
+          (lancamentoSelecionado)="onLancamentoSelecionado($event)"
+          #componenteFilho>
+      </app-lancamentos-grid><!-- selectedLancamento = $event" -->
+      </div>
+     <!--  <div class="col-12"> -->
+      <button pButton 
+        type="submit" 
+        icon="fas fa-file" 
+        pTooltip="Novo Lançamento" 
+        class="botaoNew"
+        routerLink="/lancamentos/novo" 
+        tooltipPosition="right"></button>
+
+        <button pButton 
+        icon="fas fa-edit" 
+        pTooltip="Editar" 
+        tooltipPosition="left" 
+        [disabled]="!selectedLancamento"
+        (click)="selectedLancamento && editar(selectedLancamento)"
+        class="botaoNew">
+        </button>
+
+        <button 
+            pButton 
+            icon="fas fa-trash" 
+            pTooltip="Excluir" 
+            tooltipPosition="right" 
+            (click)="excluir(selectedLancamento)"
+            [disabled]="!selectedLancamento"
+            class="botaoNew">
+        </button>
+      <!-- </div> -->
+    </div>
+
+</div>
+

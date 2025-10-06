@@ -1,0 +1,35 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  width: calc(100% - 20px);
+  padding: 0 20px;
+  padding-top: 50px;
+}
+
+button {
+  margin: 0 5px !important;
+  background-color: #4d7498 !important;
+  border-color: #4d7498 !important;
+}
+
+button:hover{
+  background: linear-gradient(45deg, #007ad9, #00c5ed) !important;
+}
+
+.grid {
+  margin-top: -25px;
+}
+
+@media screen and (max-width: 587px){
+  .container {
+    height: calc(100vh + 100px);
+    padding-top: 70px;
+  }
+}
+
+::ng-deep .p-calendar .p-datepicker {
+  margin-top: 80px !important;
+}
+

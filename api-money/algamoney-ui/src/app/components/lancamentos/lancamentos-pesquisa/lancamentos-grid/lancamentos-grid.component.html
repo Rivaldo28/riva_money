@@ -1,0 +1,68 @@
+<p-table #tableEmptyRows
+#tabela 
+[selectionMode]="'single'"
+(onRowSelect)="selecionarLinha($event)"
+[value]="lancamentoFiltro" 
+[paginator]="true" 
+[rows]="filtro.itensPorPagina"
+[responsive]="true" [totalRecords]="totalRegistros"
+[lazyLoadOnInit]="false" (onLazyLoad)="aoMudarPagina($event)" 
+(rowsChangeEvent)="lancamentoFiltro"
+[resizableColumns]="false" 
+(rowsChangeEvent)="rowsChangeEvent()" 
+class="custom-p-table sizeText table-responsivel"><!-- [tableStyle]="{'min-width': '50rem'}" -->
+  <ng-template pTemplate="header"><!-- [lazy]="true" -->
+      <tr [pSelectableRow]="rowData"><!-- (click)="selecionarLinha(rowData)" -->
+        <th style="width: 90px;">Qtd</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th class="col-data">Vencimento</th>
+        <th class="col-data">Pagamento</th>
+        <th class="th">valor</th>
+     <!--    <th class="btn1"></th> -->
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-lancamento let-rowIndex="rowIndex"  ><!-- let-lancamento -->
+    <tr [pSelectableRow]="lancamento" 
+        (click)="handleClick(lancamento, rowIndex, colIndex)"
+        [class.selected]="lancamento === selectedLancamento" 
+    >
+        <td style="text-align: center;">{{rowIndex + 1}}</td>
+        <td>{{lancamento.pessoa | uppercase}}</td>
+        <td>{{lancamento.descricao}}</td>
+        <td class="col-data">{{lancamento.dataVencimento | date: 'dd/MM/yyyy'}}</td>
+        <td class="col-data">{{lancamento.dataPagamento | date: 'dd/MM/yyyy'}}</td>
+        <td class="col-valor" 
+        [style.color]="lancamento.tipo === 'DESPESA' ? '#fd746c' : '#51C8E0'"
+        [ngClass]="{ 'neon-effect': isSelected(rowIndex, colIndex) }"
+        ><!-- #fd746c -->
+        {{ lancamento.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
+      </td>
+<!--         <td class="btn1">
+          <button pButton 
+            icon="fas fa-edit" 
+            pTooltip="Editar" 
+            tooltipPosition="left" 
+            class="btnGridEditar">
+          </button>
+          <button 
+            pButton 
+            icon="fas fa-trash" 
+            pTooltip="Excluir" 
+            tooltipPosition="right" 
+            (click)="excluir(lancamento)"
+            class="btnGridDeletar">
+          </button>
+        </td> -->
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" 
+    *ngIf="!lancamentoFiltro || lancamentoFiltro.length === 0"
+  >
+    <tr>
+      <td colspan="6">
+        <h3 class="emptymessage">{{mensagemDeErrorDados}}</h3>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

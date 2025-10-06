@@ -1,0 +1,27 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+.container {
+  width: calc(100% - 50px);
+  margin-top: 50px;
+}
+
+button {
+  margin: 0 5px !important;
+  background-color: #4d7498 !important;
+  border-color: #4d7498 !important;
+  ;
+}
+button:hover{
+  background: linear-gradient(45deg, #007ad9, #00c5ed) !important;
+}
+
+.labelUpper {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 587px){
+  .container {
+    height: calc(100vh + 100px);
+  }
+}

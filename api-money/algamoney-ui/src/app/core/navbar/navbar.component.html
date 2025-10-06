@@ -1,0 +1,40 @@
+<div class="header">
+  <div class="alignNav">
+    <a href="" class="rightAlign"><i class="fas fa-regular fa-right-from-bracket"  pTooltip="Sair" tooltipPosition="top"></i></a>
+    <div href="" class="navHeight">
+      <!--  <span>{{ displayCalc }}</span> -->
+      <p class="displayDate">{{ displayDate }}</p>
+      <p>{{ displayTime }}</p>
+    </div>
+  </div>
+</div>
+<input type="checkbox" class="toogle-sidebar" id="toogle-sidebar" >
+<div class="logo">
+  <a href="" class="menu-nav1 "><img [src]="imagemSrc" alt=""></a><!-- animate__animated animate__heartBeat animate__infinite	infinite -->
+</div>
+
+
+<label for="toogle-sidebar" class="toogle-icon" (click)="toggleSidebar()">
+  <div class="bar-top"></div>
+  <div class="bar-center"></div>
+  <div class="bar-bottom"></div>
+</label>
+
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <div class="profile">
+    <img src="../../../assets/imgriv.PNG" alt="">
+    <h3>Rivaldo Souza</h3>
+  <ul>
+    <li><i class="fa-brands fa-facebook"></i><a href="" class="teste"></a></li><!-- u>li*3>a -->
+    <li><i class="fa-brands fa-twitter"></i><a href=""></a></li>
+    <li><i class="fa-brands fa-instagram"></i><a href=""></a></li>
+  </ul>
+</div>
+  <ul class="menu">
+    <li><a routerLink="categoria"><i class="fa fa-list-alt" aria-hidden="true"></i>  Categoria</a></li>
+    <li><a routerLink="pessoas"><i class="fa fa-user" aria-hidden="true"></i>  Pessoa</a></li>
+    <li><a routerLink="lancamentos"><i class='fa fa-laptop'></i>  Lançamento</a></li>
+    <li class="footer"><a href=""><i class='fa fa-sign-out'></i>  Sair</a></li>
+  </ul>
+</div>
+

@@ -1,0 +1,49 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn1 {
+  width: 150px;
+  text-align: center !important;
+}
+button{
+  font-weight: bold;
+  background: #4d7498;
+  border: #4d7498;
+  margin: 0 5px;
+}
+
+.btnGridEditar:hover {
+  background-color: #0A9DBD;
+  box-shadow: 0 0 5px #0A9DBD, 0 0 20px #0A9DBD, 0 0 40px #00c5ed, 0 0 80px #0A9DBD;
+  animation: neonGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+  0% {
+    box-shadow: 0 0 5px #0A9DBD, 0 0 20px #0A9DBD, 0 0 40px #0A9DBD, 0 0 80px #0A9DBD;
+  }
+  100% {
+    box-shadow: 0 0 5px #0A9DBD, 0 0 20px #0A9DBD, 0 0 40px #0A9DBD, 0 0 80px #0A9DBD;
+  }
+}
+
+.btnGridDeletar:hover {
+  background-color: #fd746c;
+  box-shadow: 0 0 5px #fd746c, 0 0 20px #fd746c, 0 0 40px #fd746c, 0 0 80px #fd746c;
+  animation: neonGlows 1s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlows {
+  0% {
+    box-shadow: 0 0 5px #fd746c, 0 0 20px #fd746c, 0 0 40px #fd746c, 0 0 80px #fd746c;
+  }
+  100% {
+    box-shadow: 0 0 5px #fd746c, 0 0 20px #fd746c, 0 0 40px #fd746c, 0 0 80px #fd746c;
+  }
+}
+
+.ativoColor{
+  font-weight: bold;
+  cursor: pointer;
+}

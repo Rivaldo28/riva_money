@@ -1,0 +1,44 @@
+<div id="app">
+  <div class="top-menu">
+    <input type="checkbox" class="toogle-sidebar" id="toogle-sidebar" >
+    <label for="toogle-sidebar" class="toogle-icon" (click)="handleMenu()">
+      <div class="bar-top"></div>
+      <div class="bar-center"></div>
+      <div class="bar-bottom"></div>
+    </label>
+    <div class="logo">
+      <a href="" class="menu-nav1 "><img [src]="imagemSrc" alt=""></a>
+    </div>
+    <div class="alignNav">
+      <div href="" class="navHeight">
+        <p class="displayDate">{{ displayDate }}</p>
+        <p class="time">{{ displayTime }}</p>
+      </div>
+      <a href="" class="rightAlign">
+        <i class="fas fa-regular fa-right-from-bracket"  pTooltip="Sair" tooltipPosition="top"></i>
+      </a>
+    </div>
+  </div>
+  <div class="lateral-menu" [class.active]="!isSidebarOpen">
+    <div class="profile">
+      <img [src]="profileSrc" alt="">
+      <h3>{{ namePerfil }}</h3>
+    <ul>
+      <!-- <li><i class="fa-brands fa-facebook"></i><a href="" class="teste"></a></li>
+      <li><i class="fa-brands fa-twitter"></i><a href=""></a></li>
+      <li><i class="fa-brands fa-instagram"></i><a href=""></a></li> -->
+      <li pTooltip="Configurações"><i class="fa fa-cog" aria-hidden="true"></i><a href=""></a></li>
+    </ul>
+  </div>
+    <ul>
+      <li><a href="" routerLinkActive="active"><i class="fas fa-tachometer-alt"></i>{{ dashboard }}</a></li>
+      <li><a href=""><i class="fa fa-list-alt" aria-hidden="true"></i>{{ categoria }}</a></li>
+      <li routerLinkActive="active"><a  routerLinkActive="active" routerLink="pessoas"><i class="fa fa-user" aria-hidden="true"></i>{{ pessoas }}</a></li>
+      <li routerLinkActive="active"><a routerLinkActive="active" routerLink="lancamentos"><i class='fa fa-laptop'></i>{{ lancamentos }}</a></li>
+    </ul>
+  </div>
+  <div class="router-outlet">
+    <router-outlet></router-outlet>
+  </div>
+ </div>
+ 

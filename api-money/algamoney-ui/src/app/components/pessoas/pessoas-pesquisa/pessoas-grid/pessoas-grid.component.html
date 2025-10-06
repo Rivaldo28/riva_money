@@ -1,0 +1,47 @@
+<p-table #tabela 
+  [value]="pessoaFiltro" 
+  [paginator]="true" 
+  [rows]="4" 
+  [responsive]="true" 
+  [sortOrder]="'desc'"><!-- [tableStyle]="{'min-width': '50rem'}" -->
+  <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Cidade</th>
+        <th class="col-data">Estado</th>
+        <th class="col-data">Status</th>
+        <th class="btn1"></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-pessoa>
+      <tr>
+        <td>{{ pessoa.nome | uppercase }}</td>
+        <td>{{pessoa.endereco.cidade | uppercase }}</td>
+        <td class="col-data">{{pessoa.endereco.estado | uppercase }}</td>
+        <td class="col-data ativoColor" 
+          [style.color]="pessoa.ativo ? '#0A9DBD' : '#fd746c'"
+          (click)="mudarStatus(pessoa)"
+          >
+          {{ pessoa.ativo ? 'ATIVO' : 'INATIVO' }}
+        </td>
+        <td class="btn1">
+          <button 
+            pButton 
+            class="btnGridEditar" 
+            icon="fas fa-edit" 
+            pTooltip="Editar" 
+            tooltipPosition="top"
+          >
+          </button>
+          <button 
+            pButton icon="fas fa-trash" 
+            class="btnColor btnWidth btnGridDeletar" 
+            pTooltip="Excluir" 
+            tooltipPosition="top"
+            (click)="excluir(pessoa)"
+          >
+          </button>
+        </td>
+      </tr>
+  </ng-template>
+</p-table>

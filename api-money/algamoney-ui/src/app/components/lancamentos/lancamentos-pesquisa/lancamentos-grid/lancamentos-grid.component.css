@@ -1,0 +1,66 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+button {
+  margin: 0 5px;
+}
+
+.btn1 {
+  width: 150px;
+  text-align: center !important;
+}
+button{
+  font-weight: bold;
+  background: #4d7498;
+  border: #4d7498;
+  margin: 0 5px;
+}
+
+.btnGridEditar:hover {
+  /* background-color: #0A9DBD;
+  box-shadow: 0 0 5px #0A9DBD, 0 0 20px #0A9DBD, 0 0 40px #00c5ed, 0 0 80px #0A9DBD;
+  animation: neonGlow 1s ease-in-out infinite alternate; */
+  background: linear-gradient(45deg,#51C8E0, #516EE0) !important;
+}
+
+/* @keyframes neonGlow {
+  0% {
+    box-shadow: 0 0 5px #0A9DBD, 0 0 20px #0A9DBD, 0 0 40px #0A9DBD, 0 0 80px #0A9DBD;
+  }
+  100% {
+    box-shadow: 0 0 5px #0A9DBD, 0 0 20px #0A9DBD, 0 0 40px #0A9DBD, 0 0 80px #007ad9;
+  }
+}
+ */
+.btnGridDeletar:hover {
+  background: linear-gradient(45deg,#6251E0, #51C8E0) !important;
+}
+
+.col-valor {
+  font-weight: bold;
+}
+
+.emptymessage{
+  color: blue !important; 
+  margin: auto;
+  overflow-y: auto;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.custom-p-table .p-paginator-page {
+  background-color: #4375A3;
+  /* Outras modificações de estilo aqui */
+}
+
+.neon-effect {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor, 0 0 40px currentColor;
+  transition: text-shadow 0.3s ease;
+}
+
+
+@media screen and (max-width: 768px) {
+  p-table {
+    width: 100% !important;
+  }
+}

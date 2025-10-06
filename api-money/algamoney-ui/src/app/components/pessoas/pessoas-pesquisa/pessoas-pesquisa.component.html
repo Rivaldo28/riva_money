@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="grid">
+    <div class="col-12">
+      <h1>Pessoas</h1>
+    </div>
+    <div class="p-fluid field col-12 md:col-9">
+      <form #form="ngForm">
+        <span class="p-float-label">
+          <input type="text" 
+            id="inputtext" 
+            pInputText name="nome" 
+            [(ngModel)]="filtro.nome"
+            ngModel 
+            (ngModelChange)="verificarNome()"
+            #nome="ngModel" required minlength="5" 
+            style="text-transform: uppercase;">
+          <label for="inputtext">Nome</label>
+        </span>
+      </form>
+      <!-- <app-message [control]="descricao" error="required" text="Informe uma descrição"></app-message>
+      <app-message [control]="descricao" error="minlength"
+      text="Mínimo de {{descricao.errors?.minlength?.requiredLength}} caracteres"></app-message> -->
+    </div>
+    <div class="col-2">
+      <button pButton type="submit"  icon="fas fa-search" pTooltip="Pesquisar" class="botao" (click)="pesquisar()"></button><!-- fa-solid fa-magnifying-glass -->
+      <button pButton type="submit"  icon="fas fa-file-csv" pTooltip="CSV/Excel" class="botao" (click)="exportCSV()" [disabled]="habilitaDownloadCsv" ></button><!-- fa-solid fa-magnifying-glass -->
+      <button pButton type="submit"  icon="fas fa-eraser"  pTooltip="Limpar" class="botao" (click)="limpar()" [disabled]="habilitaLimpar"></button><!-- fa-solid fa-magnifying-glass -->
+    </div>
+  </div>
+    <div class="grid">
+      <div class="col-12">
+        <app-pessoas-grid [pessoaFiltro]="pessoaLista"></app-pessoas-grid>
+      </div>
+      <div class="col-12">
+        <button pButton type="submit" icon="fas fa-file" pTooltip="Nova Pessoa" class="botao"
+        routerLink="novo"></button>
+      </div>
+    </div>
+
+</div>
+

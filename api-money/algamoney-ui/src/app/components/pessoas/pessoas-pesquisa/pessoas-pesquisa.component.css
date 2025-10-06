@@ -1,0 +1,87 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.container{
+  flex: 1; /* Ocupa o espaço restante dentro do container */
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 50px);
+}
+
+.label {
+  display: block;
+}
+
+/* h1 {
+  margin-top: 20px;
+}
+ */
+.inputData {
+  width: 95px;
+}
+
+.btnSearch {
+  right: -40px !important;
+  margin-top: 20px;
+}
+
+.botao {
+  font-weight: bold;
+}
+
+.th {
+  text-align: center !important;
+  width: 120px;
+}
+
+.col-valor {
+  width: 120px;
+  text-align: right !important;
+}
+
+.col-data {
+  width: 120px;
+  text-align: center;
+}
+
+
+th {
+  height: 25px !important;
+}
+
+.btn1 {
+  width: 150px;
+  text-align: center !important;
+}
+
+button{
+  font-weight: bold;
+  background: #4d7498;
+  border: #4d7498;
+}
+
+button:hover{
+  background: linear-gradient(45deg,#51C8E0, #516EE0) !important;/* 51C8E0 516EE0 */
+}
+.botao{
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 738px){
+  .container {
+    height: calc(100vh + 100px);
+  }
+}
+
+@media screen and (max-width: 587px){
+  .container {
+    height: calc(100vh + 100px);
+  }
+}
+
+
+/* btnColor {
+  background-color: red;
+}
+ */

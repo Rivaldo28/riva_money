@@ -1,0 +1,119 @@
+<div class="container">
+  <form #form="ngForm" (ngSubmit)="salvar(form)">
+
+    <div class="p-fluid grid">
+      <div class="col-12">
+        <h1>Nova Pessoa</h1>
+      </div>
+
+      <div class="field col-12 md:col-10">
+        <span class="p-float-label">
+          <input type="text" 
+            id="inputtext" 
+            pInputText name="nome"
+            ngModel #nome="ngModel" 
+            required minlength="5"
+            [(ngModel)]="pessoa.nome">
+          <label for="inputtext">Nome</label>
+      </span>
+      <app-message [control]="nome" error="required" text="Informe seu nome"></app-message>
+      <app-message [control]="nome" error="minlength"
+      text="Mínimo de {{nome.errors?.minlength?.requiredLength}} caracteres"></app-message>
+      </div>
+      <div class="field col-12 md:col-2">
+        <span class="p-float-label">
+          <div class="p-field-checkbox">
+            <p-checkbox binary="true" [(ngModel)]="pessoa.ativo" name="ativo"></p-checkbox>
+            <label for="ativo" class="p-checkbox-label labelUpper" 
+            [style.color]="pessoa.ativo ? '#0A9DBD' : '#fd746c'">
+              {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
+            </label>
+          </div>
+        </span>
+      </div>
+      <div class="field col-12 md:col-9">
+        <span class="p-float-label">
+          <input type="text" id="inputtext" pInputText name="logradouro"
+          ngModel #logradouro="ngModel" required minlength="5" 
+          [(ngModel)]="pessoa.endereco && pessoa.endereco.logradouro">
+          <label for="inputtext">Logradouro</label>
+         </span>
+         <app-message [control]="logradouro" error="required" text="Descreva um Logradouro"></app-message>
+         <app-message [control]="logradouro" error="minlength"
+         text="Mínimo de {{logradouro.errors?.minlength?.requiredLength}} caracteres"></app-message>
+      </div>
+      <div class="field col-12 md:col-3">
+        <span class="p-float-label">
+          <input type="text" id="inputtext" pInputText name="numero" 
+          ngModel #numero="ngModel"
+          [(ngModel)]="pessoa.endereco && pessoa.endereco.numero" required>
+          <label for="inputtext">Número</label>
+         </span>
+         <app-message [control]="numero" error="required" text="Informe um número"></app-message>
+      </div>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input type="text" id="inputtext" pInputText name="complemento" 
+          [(ngModel)]="pessoa.endereco && pessoa.endereco.complemento">
+          <label for="inputtext">Complemento</label>
+         </span>
+      </div>
+
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input type="text" id="inputtext" pInputText  name="bairro" 
+          [(ngModel)]="pessoa.endereco && pessoa.endereco.bairro"
+          ngModel #bairro="ngModel" required>
+          <label for="inputtext">Bairro</label>
+         </span>
+         <app-message [control]="bairro" error="required" text="Informe seu Bairro"></app-message>
+      </div>
+
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <p-inputMask  type="text" id="inputtext" mask="99999-999" name="cep" 
+          [(ngModel)]="pessoa.endereco && pessoa.endereco.cep"
+          ngModel #cep="ngModel" required></p-inputMask >
+          <label for="inputtext">CEP</label>
+         </span>
+         <app-message [control]="cep" error="required" text="Informe seu CEP"></app-message>
+      </div>
+
+      <div class="field col-12 md:col-6">
+        <span class="p-float-label">
+          <input type="text" id="inputtext" pInputText name="cidade" 
+          [(ngModel)]="pessoa.endereco && pessoa.endereco.cidade"
+          ngModel #cidade="ngModel" required>
+          <label for="inputtext">Cidade</label>
+         </span>
+         <app-message [control]="cidade" error="required" text="Informe sua cidade"></app-message>
+      </div>
+      <div class="field col-12 md:col-6">
+        <span class="p-float-label">
+          <input type="text" id="inputtext" pInputText pInputText name="estado" 
+          [(ngModel)]="pessoa.endereco && pessoa.endereco.estado"
+          ngModel #estado="ngModel" required>
+          <label for="inputtext">Estado</label>
+         </span>
+         <app-message [control]="estado" error="required" text="Informe seu estado"></app-message>
+      </div>
+
+      
+      
+
+    </div>
+    <div class="grid">
+      <div class="field col-12 md:col-12">
+        <button pButton type="submit" pTooltip="Voltar" tooltipPosition="top" 
+        icon="fa-solid fa-arrow-left" routerLink="../">
+        </button>
+        <button pButton type="submit" pTooltip="Salvar" tooltipPosition="top" icon="fas fa-save">
+        </button>
+        <button pButton type="button" pTooltip="Novo" tooltipPosition="top" icon="fas fa-file">
+        </button>
+      </div>
+    </div>
+
+
+  </form>
+</div>
