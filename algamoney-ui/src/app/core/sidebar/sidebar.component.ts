@@ -14,6 +14,7 @@ export class SidebarComponent implements OnInit {
   categoria: string = 'Categoria';
   pessoas: string = 'Pessoas';
   lancamentos: string = 'Lançamentos';
+  sair: string = 'sair';
   displayDate: string = '';
   displayTime: string = '';
   _locale: string = 'pt-BR';
