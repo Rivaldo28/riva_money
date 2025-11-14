@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ExportCSVService {
 
     private csvTryQuote(data: string) {
-        if (data.includes(',')) {
+        if (data.includes(';')) {
             return '"' + data.replace(/"/g, '""') + '"';
         }
 
@@ -14,26 +14,28 @@ export class ExportCSVService {
     }
 
     private toCsv(header: string[], dados: any[]) {
-        let csv = '\ufeff';
-        const csvSeparator = ',';
+        let csv = '\ufeff'; // BOM UTF-8
+        const csvSeparator = ';'; // ← AGORA USANDO PONTO E VÍRGULA (CORRETO PARA EXCEL BR)
 
-        header.forEach((d) => {
-            csv += this.csvTryQuote(d);
-            csv += csvSeparator;
+        // Cabeçalho
+        header.forEach((h) => {
+            csv += this.csvTryQuote(h) + csvSeparator;
         });
-
-        let quebra = 0;
 
         csv += '\n';
 
-        dados.forEach((d, i) => {
-            csv += this.csvTryQuote(d.toString());
-            quebra++;
-            csv += csvSeparator;
+        let colunaAtual = 0;
+        const totalColunas = header.length;
 
-            if (quebra === header.length) {
+        // Dados
+        dados.forEach((valor) => {
+            csv += this.csvTryQuote(valor.toString()) + csvSeparator;
+            colunaAtual++;
+
+            // Quebra de linha a cada número de colunas do header
+            if (colunaAtual === totalColunas) {
                 csv += '\n';
-                quebra = 0;
+                colunaAtual = 0;
             }
         });
 
@@ -41,37 +43,26 @@ export class ExportCSVService {
     }
 
     private export(data: string, mimeTypeAndCharset: string, filename: string) {
-        const blob = new Blob([data], {
-            type: mimeTypeAndCharset
-        });
-
-        /* if (window.navigator.msSaveOrOpenBlob) {
-            navigator.msSaveOrOpenBlob(blob, filename);
-        }
-       let newVariable: any = window.navigator;
-       var newBlob = new Blob([res.body], { type: "application/csv" });
-       if (newVariable && newVariable.msSaveOrOpenBlob) {
-           newVariable.msSaveOrOpenBlob(newBlob);
-           return;
-       } */
+        const blob = new Blob([data], { type: mimeTypeAndCharset });
 
         const nav = (window.navigator as any);
         if (nav.msSaveOrOpenBlob) {
-            nav.msSaveOrOpenBlob(data, filename)
+            nav.msSaveOrOpenBlob(blob, filename);
         }
         else {
             const link = document.createElement('a');
             link.style.display = 'none';
             document.body.appendChild(link);
+
             if (link.download !== undefined) {
-                link.setAttribute('href', URL.createObjectURL(blob));
-                link.setAttribute('download', filename);
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
                 link.click();
-            }
-            else {
+            } else {
                 data = mimeTypeAndCharset + ',' + data;
                 window.open(encodeURI(data));
             }
+
             document.body.removeChild(link);
         }
     }

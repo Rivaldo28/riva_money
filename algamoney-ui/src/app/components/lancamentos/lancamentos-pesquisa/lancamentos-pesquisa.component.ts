@@ -147,23 +147,27 @@ async editar(lancamento: LancamentoModel) {
   }
 
   public exportCSV() {
-    const header: string[] = ['Código', 'Pessoa', 'Descrição', 
-                              'Vencimento', 'Pagamento', 'Preço'];
-    const dados: any[] = [];
+  const header: string[] = ['Código', 'Pessoa', 'Descrição', 
+                            'Vencimento', 'Pagamento', 'Preço'];
 
-      this.listExportCSV = this.lancamentoList;
-      this.listExportCSV.forEach((index) => {
-        dados.push(index.codigo);
-        dados.push(index.pessoa ? index.pessoa : '');
-        dados.push(index.descricao ? index.descricao : '');
-        dados.push(index.dataVencimento ? moment(index.dataVencimento).format('DD/MM/YYYY HH:MM') : '');
-        dados.push(index.dataPagamento ? moment(index.dataPagamento).format('DD/MM/YYYY HH:MM') : '');
-       /*  dados.push(index.valor ? index.valor : ''); */
-       dados.push(index.valor ? index.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : '');
-        console.log(dados);
-      });
-      this.exportCsvService.exportCsv(header, dados, 'lancamentos.csv');
-  }
+  const dados: any[] = [];
+
+  this.listExportCSV = this.lancamentoList;
+
+  this.listExportCSV.forEach((item) => {
+
+    dados.push(item.codigo);
+    dados.push(item.pessoa || '');
+    dados.push(item.descricao || '');
+    dados.push(item.dataVencimento ? moment(item.dataVencimento).format('DD/MM/YYYY HH:mm') : '');
+    dados.push(item.dataPagamento ? moment(item.dataPagamento).format('DD/MM/YYYY HH:mm') : '');
+    dados.push(item.valor ? item.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : '');
+
+  });
+
+  this.exportCsvService.exportCsv(header, dados, 'lancamentos.csv');
+}
+
  
   public limpar() {
     if (this.componenteFilho && this.componenteFilho.lancamentoFiltro && 
